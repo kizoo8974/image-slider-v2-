@@ -3,6 +3,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
   entry: "./src/js/index.js",
   output: {
@@ -33,6 +34,10 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.jpeg$/,
+        type: 'asset/inline'
+      }
     ],
   },
   optimization: {
@@ -40,5 +45,6 @@ module.exports = {
       new TerserPlugin(),
       new CssMinimizerPlugin()
     ]
-  },
+  }
 };
+
